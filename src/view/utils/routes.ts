@@ -9,21 +9,21 @@ export const pathName: IPathName[] = [
   {
     id: 1,
     path: "/",
-    element: "index.html"
+    element: "pages/index.html"
   },
   {
     id: 2,
     path: "/about",
-    element: "about.html"
+    element: "pages/about.html"
   },
   {
     id: 3,
     path: "/contact",
-    element: "contact.html"
+    element: "pages/contact.html"
   },
   {
     id: 4,
     path: "/post",
-    element: "post.html"
+    element: "pages/post.html"
   }
 ]
