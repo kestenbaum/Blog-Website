@@ -2,6 +2,7 @@ import express from "express";
 import nunjucks from "nunjucks";
 import cors from "cors";
 import path from "path";
+import { pathName, IPathName } from "./routes";
 import type { Request, Response } from "express";
 
 const app = express();
@@ -19,22 +20,13 @@ nunjucks.configure(viewsPath, {
   watch: true,
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.render("index.html", { test: "Test" });
-});
+function renderRouter (arr: IPathName[]) {
+  return arr.map(r => app.get(r.path, (req: Request, res: Response) => {
+    res.render(r.element)
+  }))
+}
 
-app.get("/about", (req: Request, res: Response) => {
-  res.render("about.html")
-})
-
-app.get("/contact", (req: Request, res: Response) => {
-  res.render("contact.html")
-})
-
-app.get("/post", (req: Request, res: Response) => {
-  res.render("post.html")
-})
-
+renderRouter(pathName);
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
