@@ -2,7 +2,7 @@ import express from "express";
 import nunjucks from "nunjucks";
 import cors from "cors";
 import path from "path";
-import { pathName, IPathName } from "./view/utils/routes";
+import { pathName, IPathName } from "./utils/routes";
 import type { Request, Response } from "express";
 
 const app = express();
