@@ -1,6 +1,6 @@
 import postData from "../utils/posts.json"
 
-interface IPost {
+export interface IPost {
     title: string,
     image: string,
     author: string,
@@ -8,6 +8,12 @@ interface IPost {
     teaser: string,
     content: string
 }
+
+export interface IBlogPost extends IPost {
+    date?: string; 
+    slug?: string; 
+}
+
 
 const dataProcessor = (posts: IPost[]) => {
     return posts.map(post => {
@@ -22,9 +28,9 @@ const dataProcessor = (posts: IPost[]) => {
         return {
             ...post,
             date: humanReadableDate,
-            slug: slug
+            slug
         } as IPost
     })
 }
 
-export const blogPost: IPost[] = dataProcessor(postData);
+export const blogPost: IBlogPost[] = dataProcessor(postData);
