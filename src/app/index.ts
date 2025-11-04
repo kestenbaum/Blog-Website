@@ -4,9 +4,11 @@ import path from "path";
 import * as process from 'process';
 import { renderRouter } from "./routes/routes";
 import { config } from "../config/nunjucks";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-const PORT = 4000;
+const PORT = Number(process.env.PORT) || 3333;
 
 const publicPath = path.join(process.cwd(), 'public');
 const viewsPath = path.join(__dirname, 'view');
