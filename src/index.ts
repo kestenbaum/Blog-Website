@@ -2,8 +2,7 @@ import express from "express";
 import nunjucks from "nunjucks";
 import cors from "cors";
 import path from "path";
-import { pathName, IPathName } from "./utils/routes";
-import type { Request, Response } from "express";
+import { renderRouter } from "./utils/routes";
 
 const app = express();
 const PORT = 4000;
@@ -20,13 +19,7 @@ nunjucks.configure(viewsPath, {
   watch: true,
 });
 
-function renderRouter (arr: IPathName[]) {
-  return arr.map(r => app.get(r.path, (req: Request, res: Response) => {
-    res.render(r.element)
-  }))
-}
-
-renderRouter(pathName);
+renderRouter(app);
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
