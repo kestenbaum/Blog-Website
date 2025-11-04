@@ -2,13 +2,14 @@ import express from "express";
 import nunjucks from "nunjucks";
 import cors from "cors";
 import path from "path";
-import { renderRouter } from "./utils/routes";
+import * as process from 'process';
+import { renderRouter } from "./routes/routes";
 
 const app = express();
 const PORT = 4000;
 
-const publicPath = path.join(__dirname, '..', 'public'); 
-const viewsPath = path.join(__dirname, '..', 'src', 'view');
+const publicPath = path.join(process.cwd(), 'public');
+const viewsPath = path.join(__dirname, 'view');
 
 app.use(cors());
 app.use(express.static(publicPath));

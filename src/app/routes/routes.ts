@@ -1,13 +1,10 @@
-import { blogPost, IBlogPost } from "./dataProcessor";
-import type { Express, Request, Response } from "express";
-interface IPathName {
-  id: number;
-  path: string;
-  element: string;
-  data?: (req: Request) => object
-}
+import { blogPost } from "../../services/dataProcessor";
+import { Express, Request, Response } from "express";
+import { postController } from "../controllers/postController";
+import { IPath } from "../../models"; 
 
-const pathName: IPathName[] = [
+
+const pathName: IPath[] = [
   {
     id: 1,
     path: "/",
@@ -28,12 +25,7 @@ const pathName: IPathName[] = [
     id: 4,
     path: "/post/:slug",
     element: "pages/post.html",
-    data: (req: Request) => {
-            const slug = req.params.slug; 
-            const post = blogPost.find((p: IBlogPost) => p.slug === slug);
-            
-            return { post: post }; 
-        }
+    data: postController
   }
 ]
 
